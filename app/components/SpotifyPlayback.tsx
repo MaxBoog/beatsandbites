@@ -1,8 +1,4 @@
-import React from "react";
-
-type Props = {};
-
-const SpotifyPlayback = (props: Props) => {
+const SpotifyPlayback = () => {
   return <div>SpotifyPlayback</div>;
 };
 

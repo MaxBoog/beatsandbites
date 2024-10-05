@@ -16,7 +16,7 @@ import Link from "next/link";
 import { ModeToggle } from "./ModeToggle";
 
 type Props = {
-  user: KindeUser;
+  user: any;
 };
 
 export default function UserNav({ user }: Props) {

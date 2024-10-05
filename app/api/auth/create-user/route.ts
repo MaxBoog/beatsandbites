@@ -14,7 +14,7 @@ export async function GET() {
 
   const supabase = createClient();
 
-  let { data: User, error } = await supabase
+  const { data: User, error } = await supabase
     .from("User")
     .select()
     .eq("kinde_id", user.id);
