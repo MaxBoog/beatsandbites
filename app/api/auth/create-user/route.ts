@@ -47,6 +47,6 @@ export async function GET() {
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000/"
       : // TODO
-        "https://snappi-ten.vercel.app/"
+        "https://beatsandbites.vercel.app/"
   );
 }
