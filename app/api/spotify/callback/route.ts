@@ -73,7 +73,7 @@ export async function GET(request: NextRequest) {
 
   // Clone and modify the URL for redirect
   const url = request.nextUrl.clone();
-  url.pathname = "/dashboard";
+  url.pathname = "/get-started";
 
   // Create a new NextResponse
   const response = NextResponse.redirect(url);
