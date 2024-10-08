@@ -35,7 +35,7 @@ export default function ConnectSpotifyButton({
         </h3>
         <p>
           Beats & Bites will create a playlist for you that goes along with your
-          recipe, a combination we call "Bites", and for that it needs
+          recipe, a combination we call &quot;Bites&quot;, and for that it needs
           authorization to link with your Spotify account. The integration makes
           it possible to play music from within the application.
         </p>

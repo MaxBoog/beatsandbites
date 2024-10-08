@@ -27,9 +27,9 @@ export default async function Page() {
           <p>
             Beats & Bites is your go to helper when you are clueless on what to
             cook tonight. Based on your preferences Beats & Bites will create a
-            "Bite" for you which is a term coined to represent a created recipe
-            with a matching playlist that you can listen to while cooking and
-            dining.
+            &quot;Bite&quot; for you which is a term coined to represent a
+            created recipe with a matching playlist that you can listen to while
+            cooking and dining.
           </p>
         </div>
 

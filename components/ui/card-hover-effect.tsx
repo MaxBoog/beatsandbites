@@ -34,7 +34,7 @@ export const HoverEffect = ({
 }: HoverEffectProps) => {
   if (multiple) {
     const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
-    let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     const handleCardClick = (index: number) => {
       let newSelectedIndices;
@@ -99,7 +99,7 @@ export const HoverEffect = ({
     );
   } else {
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-    let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     const handleCardClick = (index: number) => {
       const newIndex = selectedIndex === index ? null : index;
