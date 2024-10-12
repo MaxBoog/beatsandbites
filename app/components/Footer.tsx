@@ -10,16 +10,16 @@ export default function Footer() {
       </div>
       <div className="col">
         <ul>
-          <li className="text-gray-800 hover:text-gray-600">
+          <li className="text-gray-800 dark:text-gray-200 hover:text-gray-600">
             <Link href="/">Home</Link>
           </li>
-          <li className="text-gray-800 hover:text-gray-600">
+          <li className="text-gray-800 dark:text-gray-200 hover:text-gray-600">
             <Link href="/">Get Started</Link>
           </li>
-          <li className="text-gray-800 hover:text-gray-600">
+          <li className="text-gray-800 dark:text-gray-200 hover:text-gray-600">
             <Link href="/">Dashboard</Link>
           </li>
-          <li className="text-gray-800 hover:text-gray-600">
+          <li className="text-gray-800 dark:text-gray-200 hover:text-gray-600">
             <Link href="/">Contact</Link>
           </li>
         </ul>
