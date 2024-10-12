@@ -5,34 +5,44 @@ import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { supabase } from "@/lib/supabaseClient";
 import { Badge } from "@/components/ui/badge";
 
-export default function MealSelectorForm({ onMealSelect }: any) {
+export default function MusicSelectorForm({ onMusicSelect }: any) {
   const meals = [
     {
       index: 0,
-      title: "Breakfast",
+      title: "Sad",
       description: "",
     },
     {
       index: 1,
-      title: "Lunch",
+      title: "Moody",
       description: "",
     },
     {
       index: 2,
-      title: "Dinner",
+      title: "Chill",
+      description: "",
+    },
+    {
+      index: 3,
+      title: "Happy",
+      description: "",
+    },
+    {
+      index: 4,
+      title: "Excited",
       description: "",
     },
   ];
 
-  const [selectedMealIndex, setSelectedMealIndex] = useState<number | null>(
+  const [selectedMusicIndex, setSelectedMusicIndex] = useState<number | null>(
     null
   );
 
   const handleSelectionChange = (index: number | null) => {
-    setSelectedMealIndex(index);
+    setSelectedMusicIndex(index);
     // Notify parent component
-    if (onMealSelect) {
-      onMealSelect(index);
+    if (onMusicSelect) {
+      onMusicSelect(index);
     }
   };
 
@@ -40,9 +50,16 @@ export default function MealSelectorForm({ onMealSelect }: any) {
     <>
       <div className="col-span-8">
         <h3 className="mb-4">
-          <Badge>2</Badge> <strong>What are you making?</strong>
+          <Badge>4</Badge>{" "}
+          <strong>
+            What kind of music do you want to go along with your recipe?
+          </strong>
         </h3>
-        <p>Are you making breakfast, lunch or dinner?</p>
+        <p>
+          A playlist will be coupled to your recipe to complete your Bite and
+          here you can give a nudge in the direction of what kind of music you
+          want to go with your recipe.
+        </p>
       </div>
 
       <div className="col-span-12">

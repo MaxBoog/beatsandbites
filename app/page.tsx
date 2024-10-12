@@ -7,6 +7,10 @@ import {
   RegisterLink,
   LoginLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
+import { Testimonials } from "./components/Testimonials";
+import Pricing from "./components/Pricing";
+import EmailSection from "./components/EmailSection";
+import Footer from "./components/Footer";
 
 export default function Page() {
   return (
@@ -18,7 +22,9 @@ export default function Page() {
             </h4> */}
           <Music4Icon className="mx-auto" width={100} height={100} />
 
-          <h1 className="text-7xl text-center">Beats &amp; Bites</h1>
+          <h1 className="text-7xl text-center">
+            Beats <span className="text-indigo-600">&amp;</span> Bites
+          </h1>
           <p className="text-sm lg:text-base  max-w-2xl  my-4 mx-auto text-neutral-500 text-center font-normal dark:text-neutral-300">
             an innovative web application that pairs the joy of cooking with the
             rhythm of music.
@@ -31,6 +37,10 @@ export default function Page() {
         </div>
       </div>
       <FeaturesSectionDemo />
+      <Testimonials />
+      <Pricing />
+      <EmailSection />
+      <Footer />
     </main>
 
     // {/* TO DO

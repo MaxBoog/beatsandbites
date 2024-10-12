@@ -5,6 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { Navbar } from "./components/Nav";
 import { Toaster } from "@/components/ui/sonner";
+import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -44,6 +44,7 @@ export default function IngredientsSelectorForm({ onIngredientsSelect }: any) {
     <>
       <div className="col-span-8">
         <h3 className="mb-4">
+          <Badge>3</Badge>{" "}
           <strong>Already have some ingredients at hand?</strong>
         </h3>
         <p>

@@ -46,12 +46,14 @@ export function MoodSelectorForm({ onMoodSelect }: any) {
     <>
       <div className="col-span-8">
         <h3 className="mb-4">
-          <strong>Decide your mood</strong>
+          <strong>
+            <Badge>1</Badge> How much effort do you want to put into cooking
+            today?
+          </strong>
         </h3>
         <p>
-          How are you feeling today? Tired from a long day of work? Or feeling
-          like a chef during the weekend? Whatever it is, Beats & Bites has you
-          covered.
+          Tired from a long day of work? Or feeling like a chef during the
+          weekend? Whatever it is, Beats & Bites has you covered.
         </p>
       </div>
       <div className="col-span-12">

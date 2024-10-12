@@ -8,21 +8,13 @@ import ConnectSpotifyButton from "../../components/ConnectSpotifyButton";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import MusicSelectorForm from "./MusicSelectorForm";
 
 export default function GetStartedForm() {
   const [mood, setMood] = useState<number | null>(null);
   const [mealType, setMealType] = useState<number | null>(null);
+  const [music, setMusic] = useState<number | null>(null);
   const [ingredients, setIngredients] = useState<number[]>([]);
-  const [hasSpotifyAccessToken, setHasSpotifyAccessToken] = useState(false);
-
-  // Check Spotify access token on mount
-  useEffect(() => {
-    const checkAccessToken = async () => {
-      const response = await fetch("/api/spotify/token");
-      setHasSpotifyAccessToken(response.ok);
-    };
-    checkAccessToken();
-  }, []);
 
   const handleCreateBite = async () => {
     // Perform database operations here
@@ -34,7 +26,7 @@ export default function GetStartedForm() {
     };
 
     // Send data to an API route
-    const response = await fetch("/api/create-bite", {
+    const response = await fetch("/api/bites/create-bite", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,16 +40,15 @@ export default function GetStartedForm() {
   };
 
   const isReadyToCreateBite =
-    mood !== null && mealType !== null && hasSpotifyAccessToken;
+    mood !== null && mealType !== null && music !== null;
 
   return (
     <>
       <MoodSelectorForm onMoodSelect={setMood} />
       <MealSelectorForm onMealSelect={setMealType} />
       <IngredientsSelectorForm onIngredientsSelect={setIngredients} />
-      <ConnectSpotifyButton
-        onSpotifyConnect={() => setHasSpotifyAccessToken(true)}
-      />
+      <MusicSelectorForm onMusicSelect={setMusic} />
+
       <div className="col-span-8">
         <p className="block">
           {isReadyToCreateBite
