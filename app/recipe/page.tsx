@@ -99,9 +99,9 @@ export default function RecipePage() {
   }
 
   // Combine quantities and ingredients
-  let ingredientsList = ingredientsArray.map(
+  const ingredientsList = ingredientsArray.map(
     (ingredient: string, index: number) => {
-      let quantity = quantitiesArray[index];
+      const quantity = quantitiesArray[index];
       if (quantity === null || quantity === undefined) {
         return ingredient;
       } else {
