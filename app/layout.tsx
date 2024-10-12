@@ -6,6 +6,7 @@ import { ThemeProvider } from "./components/ThemeProvider";
 import { Navbar } from "./components/Nav";
 import { Toaster } from "@/components/ui/sonner";
 import Footer from "./components/Footer";
+import { FormProvider } from "./context/FormContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,15 +26,18 @@ export default function RootLayout({
       <body
         className={`${inter.className} antialiased bg-white text-black dark:bg-neutral-900 dark:text-white`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
-          {children}
-        </ThemeProvider>
+        <FormProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navbar />
+            {children}
+            <Toaster />
+          </ThemeProvider>
+        </FormProvider>
       </body>
     </html>
   );

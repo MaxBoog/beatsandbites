@@ -5,6 +5,7 @@ import {
   IconBrandSpotifyFilled,
   IconBrandTabler,
   IconChefHat,
+  IconCirclePlus,
   IconSettings,
 } from "@tabler/icons-react";
 import Link from "next/link";
@@ -15,6 +16,13 @@ import { Music4Icon } from "lucide-react";
 
 export function SidebarDemo() {
   const links = [
+    {
+      label: "Create a Bite",
+      href: "/get-started",
+      icon: (
+        <IconCirclePlus className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+    },
     {
       label: "Dashboard",
       href: "/dashboard",

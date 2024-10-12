@@ -3,11 +3,17 @@
 import { useSpotifyPlayer } from "../hooks/useSpotifyPlayer";
 import { useEffect, useState } from "react";
 
-export default function SpotifyPlayer() {
+interface SpotifyPlayerProps {
+  mood: string;
+}
+
+export default function SpotifyPlayer({ mood }: SpotifyPlayerProps) {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [deviceId, setDeviceId] = useState<string>("");
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const [track, setTrack] = useState<any>(null);
+
+  const [playlist, setPlaylist] = useState<any>(null);
 
   useEffect(() => {
     // Fetch the access token from cookies or API
@@ -24,6 +30,44 @@ export default function SpotifyPlayer() {
 
     fetchAccessToken();
   }, []);
+
+  useEffect(() => {
+    const fetchPlaylist = async () => {
+      // Fetch access token from your backend or localStorage
+      const token = localStorage.getItem("spotifyAccessToken");
+      if (!token) {
+        // Redirect to Spotify authentication
+        window.location.href = "/api/spotify/login";
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          `/api/spotify/playlist?mood=${encodeURIComponent(mood)}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const data = await response.json();
+        if (response.ok) {
+          setPlaylist(data.playlist);
+        } else {
+          console.error("Error fetching playlist:", data.error);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchPlaylist();
+  }, [mood]);
+
+  if (!playlist) {
+    return <p>Loading playlist...</p>;
+  }
 
   const player = useSpotifyPlayer(accessToken);
 
@@ -60,19 +104,33 @@ export default function SpotifyPlayer() {
     );
   };
 
+  // return (
+  //   <div>
+  //     {track && (
+  //       <div>
+  //         <h3>{track.name}</h3>
+  //         <p>{track.artists.map((artist: any) => artist.name).join(", ")}</p>
+  //         <img src={track.album.images[0].url} alt={track.name} width={200} />
+  //       </div>
+  //     )}
+  //     <button onClick={handlePlay}>Play</button>
+  //     <button onClick={() => player?.togglePlay()}>
+  //       {isPaused ? "Resume" : "Pause"}
+  //     </button>
+  //   </div>
+  // );
+
   return (
     <div>
-      {track && (
-        <div>
-          <h3>{track.name}</h3>
-          <p>{track.artists.map((artist: any) => artist.name).join(", ")}</p>
-          <img src={track.album.images[0].url} alt={track.name} width={200} />
-        </div>
-      )}
-      <button onClick={handlePlay}>Play</button>
-      <button onClick={() => player?.togglePlay()}>
-        {isPaused ? "Resume" : "Pause"}
-      </button>
+      <h3>{playlist.name}</h3>
+      {/* Embed Spotify player or display playlist tracks */}
+      <iframe
+        src={`https://open.spotify.com/embed/playlist/${playlist.id}`}
+        width="300"
+        height="380"
+        frameBorder="0"
+        allow="encrypted-media"
+      ></iframe>
     </div>
   );
 }
