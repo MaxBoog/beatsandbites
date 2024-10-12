@@ -42,7 +42,8 @@ export default function ConnectSpotifyButton({
       </div>
       <div className="col-span-12">
         {hasSpotifyAccessToken ? (
-          <SpotifyPlayer />
+          // <SpotifyPlayer />
+          <h1>Todo: insert spotify player</h1>
         ) : (
           <Link href={"/api/spotify/login"} className="">
             <Button className="rounded-full bg-4">
