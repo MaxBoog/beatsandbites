@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { Badge } from "@/components/ui/badge";
+import { IconZzz } from "@tabler/icons-react";
 
 export function MoodSelectorForm({ onMoodSelect }: any) {
   const moods = [
@@ -11,6 +12,7 @@ export function MoodSelectorForm({ onMoodSelect }: any) {
       title: "Lazy",
       description:
         "Quick and easy meals that do not contain to many ingredients and do not take much time to make. Perfect for your lazy Sunday.",
+      // icon: <IconZzz />,
     },
     {
       index: 1,

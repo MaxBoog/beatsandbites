@@ -10,17 +10,20 @@ export default function MealSelectorForm({ onMealSelect }: any) {
     {
       index: 0,
       title: "Breakfast",
-      description: "",
+      description:
+        "A morning meal typically consisting of light and energizing foods such as eggs, toast, cereal, or fruit, providing fuel for the start of the day.",
     },
     {
       index: 1,
       title: "Lunch",
-      description: "",
+      description:
+        "A midday meal often featuring sandwiches, salads, or soups, designed to keep energy levels steady during the afternoon.",
     },
     {
       index: 2,
       title: "Dinner",
-      description: "",
+      description:
+        "The main evening meal, usually heartier, featuring proteins like chicken, beef, or fish, along with vegetables and grains",
     },
   ];
 

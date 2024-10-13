@@ -1,4 +1,4 @@
-import { IconCalendarMonth } from "@tabler/icons-react";
+import { IconCalendarMonth, IconNews } from "@tabler/icons-react";
 
 export default function EmailSection() {
   return (
@@ -9,10 +9,7 @@ export default function EmailSection() {
             <h2 className="text-3xl font-bold tracking-tight dark:text-white sm:text-4xl">
               Subscribe to our newsletter.
             </h2>
-            <p className="mt-4 text-lg leading-8 text-gray-500">
-              Nostrud amet eu ullamco nisi aute in ad minim nostrud adipisicing
-              velit quis. Duis tempor incididunt dolore.
-            </p>
+            <p className="mt-4 text-lg leading-8 text-gray-500">Stay updated</p>
             <div className="mt-6 flex max-w-md gap-x-4">
               <label htmlFor="email-address" className="sr-only">
                 Email address
@@ -37,7 +34,7 @@ export default function EmailSection() {
           <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
             <div className="flex flex-col items-start">
               <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
-                <IconCalendarMonth
+                <IconNews
                   aria-hidden="true"
                   className="h-6 w-6 dark:text-white"
                 />
@@ -46,8 +43,8 @@ export default function EmailSection() {
                 Weekly articles
               </dt>
               <dd className="mt-2 leading-7 text-gray-500">
-                Non laboris consequat cupidatat laborum magna. Eiusmod non irure
-                cupidatat duis commodo amet.
+                Receive our weekly blog articles keeping you up to date with the
+                latest developments.
               </dd>
             </div>
             <div className="flex flex-col items-start">
@@ -58,11 +55,11 @@ export default function EmailSection() {
                 />
               </div>
               <dt className="mt-4 font-semibold dark:text-white">
-                Weekly articles
+                Product updates
               </dt>
               <dd className="mt-2 leading-7 text-gray-500">
-                Non laboris consequat cupidatat laborum magna. Eiusmod non irure
-                cupidatat duis commodo amet.
+                Subscribe to receive our monthly product updates and be the
+                first to know the newest features of Beats & Bites
               </dd>
             </div>
           </dl>

@@ -2,12 +2,13 @@
 
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import React, { useState } from "react";
 
 interface ItemType {
   index: number;
   title: string;
   description: string;
+  icon?: React.ReactNode;
 }
 
 interface HoverEffectPropsBase {
@@ -149,7 +150,9 @@ export const HoverEffect = ({
                 "transition-colors duration-200"
               )}
             >
-              <CardTitle>{item.title}</CardTitle>
+              <CardTitle>
+                {item.icon} {item.title}
+              </CardTitle>
               <CardDescription>{item.description}</CardDescription>
             </Card>
           </div>
@@ -169,7 +172,7 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "rounded-2xl h-full w-full p-4 overflow-hidden bg-slate-100 dark:bg-black border border-transparent dark:border-white/[0.2] dark:group-hover:border-slate-700 relative z-20",
+        "rounded-2xl h-full w-full p-1 overflow-hidden bg-slate-100 dark:bg-black border border-transparent dark:border-white/[0.2] dark:group-hover:border-slate-700 relative z-20",
         className
       )}
     >
@@ -189,7 +192,7 @@ export const CardTitle = ({
   return (
     <h4
       className={cn(
-        "dark:text-zinc-100 font-bold tracking-wide mt-4",
+        "dark:text-zinc-100 font-bold tracking-wide flex gap-2",
         className
       )}
     >
@@ -207,7 +210,7 @@ export const CardDescription = ({
   return (
     <p
       className={cn(
-        "mt-8 dark:text-zinc-200 tracking-wide leading-relaxed text-sm",
+        " dark:text-zinc-200 tracking-wide leading-relaxed text-sm",
         className
       )}
     >

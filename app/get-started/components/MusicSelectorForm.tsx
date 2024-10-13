@@ -8,28 +8,53 @@ export default function MusicSelectorForm({ onMusicSelect }: any) {
   const musicMoods = [
     {
       index: 0,
-      title: "Sad",
-      description: "sad",
+      title: "Relaxed",
+      description: "",
     },
     {
       index: 1,
-      title: "Moody",
-      description: "moody",
+      title: "Happy",
+      description: "",
     },
     {
       index: 2,
-      title: "Chill",
-      description: "chill",
+      title: "Excited",
+      description: "",
     },
     {
       index: 3,
-      title: "Happy",
-      description: "happy",
+      title: "Sad",
+      description: "",
     },
     {
       index: 4,
-      title: "Excited",
-      description: "excited",
+      title: "Nervous",
+      description: "",
+    },
+    {
+      index: 5,
+      title: "Tired",
+      description: "",
+    },
+    {
+      index: 6,
+      title: "Bored",
+      description: "",
+    },
+    {
+      index: 7,
+      title: "Lazy",
+      description: "",
+    },
+    {
+      index: 8,
+      title: "Stressed",
+      description: "",
+    },
+    {
+      index: 9,
+      title: "Not sure",
+      description: "",
     },
   ];
 
@@ -55,10 +80,7 @@ export default function MusicSelectorForm({ onMusicSelect }: any) {
     <>
       <div className="col-span-8">
         <h3 className="mb-4">
-          <Badge>3</Badge>{" "}
-          <strong>
-            What kind of music do you want to go along with your recipe?
-          </strong>
+          <Badge>3</Badge> <strong>How are you feeling</strong>
         </h3>
         <p>
           A playlist will be coupled to your recipe to complete your Bite and

@@ -43,13 +43,13 @@ export async function POST(request: Request) {
   const filters = moodFilters[mood];
 
   // Map mealType indices to meal types
-  // const mealTypes: { [key: number]: string } = {
-  //   0: "Breakfast",
-  //   1: "Lunch",
-  //   2: "Dinner",
-  // };
+  const mealTypes: { [key: number]: string } = {
+    0: "Breakfast",
+    1: "Lunch",
+    2: "Dinner",
+  };
 
-  // const mealTypeValue = mealTypes[mealType];
+  const mealTypeValue = mealTypes[mealType];
 
   // Build the query to fetch recipes matching the criteria
   let query = supabase.from("Recipes").select("*");
@@ -66,7 +66,7 @@ export async function POST(request: Request) {
   // }
 
   // Apply meal type filter
-  // query = query.eq("RecipeCategory", mealTypeValue);
+  query = query.eq("meal_type", mealTypeValue);
 
   // Apply ingredient filters if any
   // if (ingredients && ingredients.length > 0) {

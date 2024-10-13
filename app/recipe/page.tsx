@@ -19,6 +19,7 @@ import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { supabase } from "@/lib/supabaseClient";
 import { toast } from "sonner";
 import Link from "next/link";
+import { IconRefresh } from "@tabler/icons-react";
 
 export default function RecipePage() {
   const { user, getUser } = useKindeBrowserClient();
@@ -37,16 +38,18 @@ export default function RecipePage() {
   const [similarRecipes, setSimilarRecipes] = useState<any[]>([]);
   const router = useRouter();
   const [isSaving, setIsSaving] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    // Fetch the recipe data if not already fetched
-    const fetchRecipe = async () => {
-      const data = {
-        mood,
-        mealType,
-        ingredients,
-      };
+  const fetchRecipe = async () => {
+    setIsLoading(true);
 
+    const data = {
+      mood,
+      mealType,
+      ingredients,
+    };
+
+    try {
       const response = await fetch("/api/get-recipe", {
         method: "POST",
         headers: {
@@ -63,12 +66,17 @@ export default function RecipePage() {
       } else {
         router.push("/get-started");
       }
-    };
-
-    if (!recipe) {
-      fetchRecipe();
+    } catch (error) {
+      console.error("Error fetching recipe:", error);
+      // Handle error as needed
+    } finally {
+      setIsLoading(false);
     }
-  }, [mood, mealType, ingredients, recipe]);
+  };
+
+  useEffect(() => {
+    fetchRecipe();
+  }, [mood, mealType, ingredients]);
 
   if (!recipe) {
     return <LoadingSkeleton />;
@@ -141,6 +149,10 @@ export default function RecipePage() {
     setIsSaving(false);
   };
 
+  if (isLoading) {
+    return <LoadingSkeleton />;
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-8">
       <h1 className="text-center text-2xl font-bold">Your Bite is ready!</h1>
@@ -174,6 +186,9 @@ export default function RecipePage() {
             <p>
               Prep Time: <span className="font-bold">{recipe.TotalTime}</span>{" "}
               minutes
+            </p>
+            <p>
+              Tags: <Badge>{recipe.meal_type}</Badge>
             </p>
           </CardContent>
           <CardFooter>
@@ -216,6 +231,14 @@ export default function RecipePage() {
               </p>
             </li>
           ))}
+          <li className="border p-4 rounded-lg shadow my-4">
+            <Button onClick={fetchRecipe} disabled={isLoading}>
+              <IconRefresh className="mr-2" />
+              {isLoading
+                ? "Fetching..."
+                : "I want something completely different"}
+            </Button>
+          </li>
         </ul>
       ) : (
         <p>No similar recipes found.</p>
