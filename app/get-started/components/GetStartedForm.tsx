@@ -40,7 +40,7 @@ export default function GetStartedForm() {
     // Perform database operations here
     // Prepare the data
     setIsLoading(true);
-    toast("Creating your Bite...", {
+    toast.info("Creating your Bite...", {
       description: "We are fetching a delicious recipe for you!",
     });
     const data = {
