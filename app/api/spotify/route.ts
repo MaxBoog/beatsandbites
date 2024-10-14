@@ -6,14 +6,14 @@ import { getAccessToken } from "@/app/utils/spotify";
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const mood = searchParams.get("mood") || "relaxed";
-    const cuisine = searchParams.get("cuisine") || "italian";
+    const mood = searchParams.get("mood");
+    // const cuisine = searchParams.get("cuisine") || "italian";
 
     const accessToken = await getAccessToken();
 
     const response = await fetch(
       `https://api.spotify.com/v1/search?${new URLSearchParams({
-        q: `${mood} ${cuisine}`,
+        q: `${mood}`,
         type: "playlist",
         limit: "1",
       })}`,

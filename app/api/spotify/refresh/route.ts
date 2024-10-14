@@ -38,7 +38,7 @@ export async function GET(request: NextRequest) {
     data.access_token,
     {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: process.env.NODE_ENV === "development",
       maxAge: data.expires_in,
       path: "/",
     }

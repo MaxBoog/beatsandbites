@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
   const scope =
-    "user-read-email user-read-private streaming user-modify-playback-state user-read-playback-state";
+    "user-read-email user-read-private streaming user-modify-playback-state user-read-playback-state playlist-read-private playlist-read-collaborative";
 
   const params = new URLSearchParams({
     response_type: "code",

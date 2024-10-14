@@ -10,6 +10,14 @@ import MealSelectorForm from "./components/MealSelectorForm";
 import IngredientsSelectorForm from "./components/IngredientsSelectorForm";
 import ConnectSpotifyButton from "../components/ConnectSpotifyButton";
 import GetStartedForm from "./components/GetStartedForm";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbPage,
+} from "@/components/ui/breadcrumb";
 
 export default async function Page() {
   noStore();
@@ -21,8 +29,19 @@ export default async function Page() {
 
   return (
     <section className="max-w-7xl px-4 md:px-8 mx-auto pb-4">
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Get Started</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
       <div className="grid grid-cols-12 gap-4">
-        <div className="col-span-8">
+        <div className="col-span-8 mt-4">
           <h1>How it works!</h1>
           <p>
             Beats & Bites is your go to helper when you are clueless on what to
@@ -37,9 +56,6 @@ export default async function Page() {
           <Separator orientation="horizontal" />
         </div>
 
-        {/* <Link href={"/get-started/create-bite"}>
-          <Button className="mt-4">Ready to create your Bite?</Button>
-        </Link> */}
         <GetStartedForm />
       </div>
     </section>

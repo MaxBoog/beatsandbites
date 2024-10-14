@@ -84,6 +84,7 @@ export default function GetStartedForm() {
 
   return (
     <>
+      <ConnectSpotifyButton />
       <MoodSelectorForm onMoodSelect={setMood} />
       <MealSelectorForm onMealSelect={setMealType} />
       {/* <IngredientsSelectorForm onIngredientsSelect={setIngredients} /> */}
