@@ -40,13 +40,18 @@ export default function RecipePage() {
   // fetching user
   const { user } = useKindeBrowserClient();
   const userId = user?.id;
-
   const router = useRouter();
   const formContext = useContext(FormContext);
+  if (!formContext) {
+    router.push("/get-started");
+    return null; // Prevent further rendering
+  }
+  const { mood, music, mealType, ingredients, recipe, similarRecipe } =
+    formContext;
 
   // hooks for setting recipes
-  const [recipe, setRecipe] = useState<any>(null);
-  const [similarRecipes, setSimilarRecipes] = useState<any[]>([]);
+  const [newRecipe, setNewRecipe] = useState<any>(recipe);
+  const [similarRecipes, setSimilarRecipes] = useState<any>(similarRecipe);
 
   // hooks for loading
   const [isSaving, setIsSaving] = useState(false);
@@ -57,11 +62,8 @@ export default function RecipePage() {
   const [playlistUri, setPlaylistUri] = useState<string | null>(null);
 
   // display loading state when no context available and return to /get-started if not available
-  if (!formContext) {
-    router.push("/get-started");
-  }
 
-  const { mood, mealType, music, ingredients } = formContext || {};
+  // console.log(recipe);
 
   const player = useSpotifyPlayer(accessToken);
 
@@ -88,7 +90,7 @@ export default function RecipePage() {
 
       if (response.ok) {
         console.log("Fetched recipe:", result.recipe);
-        setRecipe(result.recipe);
+        setNewRecipe(result.recipe);
         setSimilarRecipes(result.similarRecipes);
       } else {
         console.error("Error fetching recipe:", result.error);
@@ -102,11 +104,6 @@ export default function RecipePage() {
       setIsLoading(false);
     }
   };
-  useEffect(() => {
-    if (!recipe) {
-      fetchRecipe();
-    }
-  }, [mood, mealType, ingredients, recipe]);
 
   useEffect(() => {
     if (!music) return;
@@ -140,6 +137,9 @@ export default function RecipePage() {
       router.push("/login");
       return;
     }
+    if (!recipe) {
+      return;
+    }
 
     try {
       // Check if the recipe is already saved by the user
@@ -147,7 +147,7 @@ export default function RecipePage() {
         .from("saved_recipes")
         .select("id")
         .eq("user_id", userId)
-        .eq("recipe_id", recipe.RecipeId);
+        .eq("recipe_id", newRecipe.RecipeId);
 
       if (fetchError) {
         console.error("Error checking existing recipes:", fetchError);
@@ -169,8 +169,8 @@ export default function RecipePage() {
         .insert([
           {
             user_id: userId,
-            recipe_id: recipe.RecipeId,
-            recipe_data: recipe, // Optional, if you have a 'recipe_data' JSONB column
+            recipe_id: newRecipe.RecipeId,
+            recipe_data: newRecipe, // Optional, if you have a 'recipe_data' JSONB column
             mood: mood,
             music: music,
           },
@@ -195,23 +195,23 @@ export default function RecipePage() {
   }
 
   let quantitiesArray = [];
-  if (recipe.RecipeIngredientQuantities) {
+  if (newRecipe.RecipeIngredientQuantities) {
     quantitiesArray = JSON.parse(
-      recipe.RecipeIngredientQuantities.replace(/None/g, "null")
+      newRecipe.RecipeIngredientQuantities.replace(/None/g, "null")
     );
   }
 
   // Parse RecipeIngredientParts
   let ingredientsArray = [];
-  if (recipe.RecipeIngredientParts) {
+  if (newRecipe.RecipeIngredientParts) {
     // Attempt to parse as JSON array
     try {
       ingredientsArray = JSON.parse(
-        recipe.RecipeIngredientParts.replace(/'/g, '"')
+        newRecipe.RecipeIngredientParts.replace(/'/g, '"')
       );
     } catch (error) {
       // If parsing fails, split by commas
-      ingredientsArray = recipe.RecipeIngredientParts.split(" ").map(
+      ingredientsArray = newRecipe.RecipeIngredientParts.split(" ").map(
         (item: any) => item.trim()
       );
     }
@@ -252,7 +252,7 @@ export default function RecipePage() {
         <Card>
           <CardHeader>
             <CardTitle>
-              {recipe.Name} - <Badge>{recipe.RecipeCategory}</Badge>
+              {newRecipe.Name} - <Badge>{newRecipe.RecipeCategory}</Badge>
             </CardTitle>
             <CardDescription>{recipe.Description}</CardDescription>
           </CardHeader>
@@ -265,21 +265,22 @@ export default function RecipePage() {
             </ul>
             <h3 className="font-bold mt-4">Instructions:</h3>
             <p className="my-2 text-gray-800 dark:text-gray-400">
-              {recipe.RecipeInstructions}
+              {newRecipe.RecipeInstructions}
             </p>
             <p>
-              Serves: <span className="font-bold">{recipe.RecipeServings}</span>
+              Serves:{" "}
+              <span className="font-bold">{newRecipe.RecipeServings}</span>
             </p>
             <p>
-              Calories: <span className="font-bold">{recipe.Calories}</span> per
-              serving
+              Calories: <span className="font-bold">{newRecipe.Calories}</span>{" "}
+              per serving
             </p>
             <p>
-              Prep Time: <span className="font-bold">{recipe.TotalTime}</span>{" "}
-              minutes
+              Prep Time:{" "}
+              <span className="font-bold">{newRecipe.TotalTime}</span> minutes
             </p>
             <p>
-              Tags: <Badge>{recipe.meal_type}</Badge>
+              Tags: <Badge>{newRecipe.meal_type}</Badge>
             </p>
           </CardContent>
           <CardFooter>
@@ -316,14 +317,14 @@ export default function RecipePage() {
       </h2>
       {similarRecipes.length > 0 ? (
         <ul>
-          {similarRecipes.map((simRecipe) => (
+          {similarRecipes.map((simRecipe: any) => (
             <li
               key={simRecipe.RecipeId}
               className="border p-4 rounded-lg shadow my-4"
             >
               <div className="flex justify-between">
                 <h3 className="">{simRecipe.Name}</h3>
-                <Button onClick={() => setRecipe(simRecipe)}>
+                <Button onClick={() => setNewRecipe(simRecipe)}>
                   Select this recipe
                 </Button>
               </div>

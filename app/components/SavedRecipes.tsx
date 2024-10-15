@@ -40,6 +40,7 @@ export default function SavedRecipes({ user }: any) {
   const router = useRouter();
   const userId = user.id;
   // console.log(user);
+  const [selectedMealType, setSelectedMealType] = useState<string>("All");
 
   useEffect(() => {
     const fetchSavedRecipes = async () => {
