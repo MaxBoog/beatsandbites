@@ -15,7 +15,7 @@ export async function Navbar() {
   // console.log(user);
   return (
     <nav className="max-w-7xl w-full mx-auto flex md:grid md:grid-cols-12 items-center px-4 md:px-8 py-7  bg-white dark:bg-background">
-      <div className="md:col-span-6">
+      <div className="md:col-span-4">
         <Link href={"/"}>
           <h1 className="text-2xl font-semibold">
             {/* <Image
@@ -29,8 +29,19 @@ export async function Navbar() {
           </h1>
         </Link>
       </div>
+      <div className="col-span-4 flex justify-around">
+        <Link className="hover:underline" href={"/home"}>
+          Home
+        </Link>
+        <Link className="hover:underline" href={"/get-started"}>
+          Get Started
+        </Link>
+        <Link className="hover:underline" href={"/contact"}>
+          Contact
+        </Link>
+      </div>
 
-      <div className="flex items-center gap-x-2 ms-auto md:col-span-6">
+      <div className="flex items-center gap-x-2 ms-auto md:col-span-4">
         {user ? (
           <UserNav user={user} />
         ) : (
