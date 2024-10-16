@@ -120,6 +120,8 @@ export default function SavedRecipes({ user }: any) {
     });
   };
 
+  console.log(selectedMealTypes);
+
   const filteredRecipes = savedRecipes.filter((item) => {
     if (selectedMealTypes.length === 0) return true; // If no meal types are selected, show all recipes
     const recipe = item.recipe_data;
@@ -154,7 +156,7 @@ export default function SavedRecipes({ user }: any) {
           </p>
         ) : (
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mt-4">
-            {savedRecipes.map((item) => {
+            {filteredRecipes.map((item) => {
               const recipe = item.recipe_data;
               // Map mood and music numeric values to labels
               const moodLabel =
