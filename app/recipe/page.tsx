@@ -47,7 +47,9 @@ export default function RecipePage() {
     return null; // Prevent further rendering
   }
   const { mood, music, mealType, ingredients, recipe, similarRecipe } =
-    formContext;
+    formContext || {};
+
+  console.log("recipe page: ", recipe);
 
   // hooks for setting recipes
   const [newRecipe, setNewRecipe] = useState<any>(recipe);
@@ -127,6 +129,8 @@ export default function RecipePage() {
 
     fetchPlaylist();
   }, [music]);
+
+  console.log("new recipe:", newRecipe);
 
   const handleSaveRecipe = async () => {
     setIsSaving(true);

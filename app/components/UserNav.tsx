@@ -21,6 +21,7 @@ type Props = {
 
 export default function UserNav({ user }: Props) {
   const { family_name, given_name, picture, email } = user;
+  console.log(picture);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
