@@ -158,6 +158,7 @@ export default function SavedRecipes({ user }: any) {
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mt-4">
             {filteredRecipes.map((item) => {
               const recipe = item.recipe_data;
+              const music = item.music;
               // Map mood and music numeric values to labels
               const moodLabel =
                 moodMap[item.mood as keyof typeof moodMap] || "Unknown Mood";
@@ -227,7 +228,7 @@ export default function SavedRecipes({ user }: any) {
                             </DialogDescription>
 
                             <DialogDescription>
-                              For this Bite you selected{" "}
+                              For this Bite you selected a{" "}
                               <strong>{moodLabel}</strong> mood and{" "}
                               <strong>{musicLabel}</strong> music.
                             </DialogDescription>
@@ -273,7 +274,7 @@ export default function SavedRecipes({ user }: any) {
                             </div>
                           </div>
                           <DialogFooter className="sm:justify-start">
-                            <SpotifyPlayer mood={recipe.music} />
+                            <SpotifyPlayer mood={music} />
                           </DialogFooter>
                         </DialogContent>
                       </Dialog>
