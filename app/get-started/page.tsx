@@ -18,6 +18,7 @@ import {
   BreadcrumbSeparator,
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
+import Footer from "../components/Footer";
 
 export default async function Page() {
   noStore();
@@ -28,36 +29,40 @@ export default async function Page() {
   }
 
   return (
-    <section className="max-w-7xl px-4 md:px-8 mx-auto pb-4">
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Get Started</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-      <div className="grid grid-cols-12 gap-4">
-        <div className="col-span-8 mt-4">
-          <h1>How it works!</h1>
-          <p>
-            Beats & Bites is your go to helper when you are clueless on what to
-            cook tonight. Based on your preferences Beats & Bites will create a
-            &quot;Bite&quot; for you which is a term coined to represent a
-            created recipe with a matching playlist that you can listen to while
-            cooking and dining.
-          </p>
-        </div>
+    <>
+      <section className="max-w-7xl px-4 md:px-8 mx-auto pb-4">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Get Started</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+        <div className="grid grid-cols-12 gap-4">
+          <div className="col-span-8 mt-4">
+            <h1>How it works!</h1>
+            <p>
+              Beats & Bites is your go to helper when you are clueless on what
+              to cook tonight. Based on your preferences Beats & Bites will
+              create a &quot;Bite&quot; for you which is a term coined to
+              represent a created recipe with a matching playlist that you can
+              listen to while cooking and dining.
+            </p>
+          </div>
 
-        <div className="col-span-8">
-          <Separator orientation="horizontal" />
-        </div>
+          <div className="col-span-8">
+            <Separator orientation="horizontal" />
+          </div>
 
-        <GetStartedForm />
-      </div>
-    </section>
+          <GetStartedForm />
+        </div>
+      </section>
+      <Separator />
+      <Footer />
+    </>
   );
 }
