@@ -37,10 +37,11 @@ interface Item {
 export default function SavedRecipes({ user }: any) {
   const [savedRecipes, setSavedRecipes] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+
   const router = useRouter();
   const userId = user.id;
   // console.log(user);
-  const [selectedMealType, setSelectedMealType] = useState<string>("All");
+  const [selectedMealTypes, setSelectedMealTypes] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchSavedRecipes = async () => {
@@ -107,13 +108,47 @@ export default function SavedRecipes({ user }: any) {
     9: "Top-2000",
   };
 
+  const toggleMealType = (mealType: string) => {
+    setSelectedMealTypes((prevSelected) => {
+      if (prevSelected.includes(mealType)) {
+        // Remove the meal type from the selection
+        return prevSelected.filter((type) => type !== mealType);
+      } else {
+        // Add the meal type to the selection
+        return [...prevSelected, mealType];
+      }
+    });
+  };
+
+  const filteredRecipes = savedRecipes.filter((item) => {
+    if (selectedMealTypes.length === 0) return true; // If no meal types are selected, show all recipes
+    const recipe = item.recipe_data;
+    return selectedMealTypes.includes(recipe.meal_type);
+  });
+
   return (
     <div className="flex flex-1">
       <div className="p-2 md:p-10 rounded-r-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 w-full h-full">
         <h2 className="text-2xl font-bold mb-4">My Bites</h2>
         <Separator />
+        <p className="mb-4 text-gray-600 dark:text-gray-300">
+          Filter your Bites
+        </p>
+        <div className="flex space-x-2 mb-4">
+          {["Breakfast", "Lunch", "Dinner"].map((mealType) => (
+            <Button
+              key={mealType}
+              variant={
+                selectedMealTypes.includes(mealType) ? "default" : "outline"
+              }
+              onClick={() => toggleMealType(mealType)}
+            >
+              {mealType}
+            </Button>
+          ))}
+        </div>
 
-        {savedRecipes.length === 0 ? (
+        {filteredRecipes.length === 0 ? (
           <p className="mt-4">
             You have no saved Bites. Go create some Bites first.
           </p>

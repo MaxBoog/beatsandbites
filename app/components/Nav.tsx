@@ -30,7 +30,7 @@ export async function Navbar() {
         </Link>
       </div>
       <div className="col-span-4 flex justify-around">
-        <Link className="hover:underline" href={"/home"}>
+        <Link className="hover:underline" href={"/"}>
           Home
         </Link>
         <Link className="hover:underline" href={"/get-started"}>
