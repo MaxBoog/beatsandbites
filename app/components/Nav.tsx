@@ -29,7 +29,7 @@ export async function Navbar() {
           </h1>
         </Link>
       </div>
-      <div className="col-span-4 flex justify-around">
+      <div className="col-span-4 hidden sm:flex justify-around">
         <Link className="hover:underline" href={"/"}>
           Home
         </Link>

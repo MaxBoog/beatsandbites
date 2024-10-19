@@ -41,7 +41,7 @@ export default function MealSelectorForm({ onMealSelect }: any) {
 
   return (
     <>
-      <div className="col-span-8">
+      <div className="col-span-12 sm:col-span-8">
         <h3 className="mb-4">
           <Badge>2</Badge> <strong>What are you making?</strong>
         </h3>

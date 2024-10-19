@@ -78,7 +78,7 @@ export default function MusicSelectorForm({ onMusicSelect }: any) {
 
   return (
     <>
-      <div className="col-span-8">
+      <div className="col-span-12 sm:col-span-8">
         <h3 className="mb-4">
           <Badge>3</Badge> <strong>How are you feeling</strong>
         </h3>

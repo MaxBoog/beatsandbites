@@ -42,8 +42,8 @@ export default async function Page() {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <div className="grid grid-cols-12 gap-4">
-          <div className="col-span-8 mt-4">
+        <div className="grid grid-cols-12 gap-4 w-full">
+          <div className="sm:col-span-8 mt-4 col-span-12">
             <h1>How it works!</h1>
             <p>
               Beats & Bites is your go to helper when you are clueless on what
@@ -54,7 +54,7 @@ export default async function Page() {
             </p>
           </div>
 
-          <div className="col-span-8">
+          <div className="sm:col-span-8 col-span-12">
             <Separator orientation="horizontal" />
           </div>
 

@@ -34,9 +34,9 @@ export async function POST(request: Request) {
 
   // Map mood indices to filter criteria
   const moodFilters: { [key: number]: any } = {
-    0: { maxPrepTime: 15, maxIngredients: 4 }, // Lazy
-    1: { minPrepTime: 15, maxPrepTime: 30 }, // Moderate
-    2: { minPrepTime: 30, maxPrepTime: 60 }, // Adventurous
+    0: { maxPrepTime: 20, maxIngredients: 4 }, // Lazy
+    1: { minPrepTime: 20, maxPrepTime: 40 }, // Moderate
+    2: { minPrepTime: 40, maxPrepTime: 60 }, // Adventurous
     3: { minPrepTime: 60, maxPrepTime: 120 }, // Chef-like
   };
 

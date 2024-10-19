@@ -194,14 +194,14 @@ export default function GetStartedForm() {
       {/* <IngredientsSelectorForm onIngredientsSelect={setIngredients} /> */}
       <MusicSelectorForm onMusicSelect={setMusic} />
 
-      <div className="col-span-8">
+      <div className="col-span-12 sm:col-span-8">
         <p className="block">
           {isReadyToCreateBite
             ? "Ready to create your Bite?"
             : "Please fill out all the required steps before creating your Bite"}
         </p>
       </div>
-      <div className="col-span-8">
+      <div className="col-span-12 sm:col-span-8">
         <Button
           className={cn(
             !isReadyToCreateBite || isLoading

@@ -29,7 +29,7 @@ export default function ConnectSpotifyButton({
   }, []);
   return (
     <>
-      <div className="col-span-8">
+      <div className="col-span-12 sm:col-span-8">
         <h3 className="mb-4">
           <strong>Connect your Spotify account with Beats & Bites</strong>
         </h3>

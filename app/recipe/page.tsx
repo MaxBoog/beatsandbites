@@ -253,7 +253,9 @@ export default function RecipePage() {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <h1 className="text-center text-2xl font-bold">Your Bite is ready!</h1>
+        <h1 className="text-center text-2xl font-bold mt-8">
+          Your Bite is ready!
+        </h1>
 
         <div className="my-8">
           <Card>
@@ -332,7 +334,10 @@ export default function RecipePage() {
               >
                 <div className="flex justify-between">
                   <h3 className="">{simRecipe.Name}</h3>
-                  <Button onClick={() => setNewRecipe(simRecipe)}>
+                  <Button
+                    className="ml-2"
+                    onClick={() => setNewRecipe(simRecipe)}
+                  >
                     Select this recipe
                   </Button>
                 </div>

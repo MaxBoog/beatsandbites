@@ -23,7 +23,7 @@ export function MoodSelectorForm({ onMoodSelect }: any) {
       index: 2,
       title: "Adventurous",
       description:
-        "Recipes that take some more effort but are rewarding if you want to impress the in-laws cominig over.",
+        "Recipes that take some more effort but are rewarding if you want to impress the in-laws coming over.",
     },
     {
       index: 3,
@@ -46,7 +46,7 @@ export function MoodSelectorForm({ onMoodSelect }: any) {
 
   return (
     <>
-      <div className="col-span-8">
+      <div className="col-span-12 sm:col-span-8">
         <h3 className="mb-4">
           <strong>
             <Badge>1</Badge> How much effort do you want to put into cooking
